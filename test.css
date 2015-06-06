@@ -1,0 +1,35 @@
+body {
+  margin: 9px 9px 0 9px;
+  padding: 0;
+  background: #FFF;
+}
+
+#level0 {
+  background: #FC0;
+}
+
+#level1 {
+  margin-left: 143px;
+  padding-left: 9px;
+  background: #FFF;
+}
+
+#level2 {
+  background: #FFF3AC;
+}
+
+#level3 {
+  margin-right: 143px;
+  padding-right: 9px;
+  background: #FFF;
+}
+#main {
+  background: #CCC;
+}
+
+#topBar {
+  background: #FC0;
+}
+#advBar {
+  background: #FFF3AC;
+}

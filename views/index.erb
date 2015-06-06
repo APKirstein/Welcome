@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="foundation.css">
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="home.css">
+  </head>
+
+  <body>
+    <h1 id="header"><%= date %></h1>
+
+    <div class="large-4 columns" id="box">
+      <h3 id="d_list">Drew's List</h3>
+      <ul>
+        <% tasks.each do |task| %>
+          <li><%= task["name"]%></li>
+        <% end %>
+      </ul>
+      <div class="large-8 columns" id="box">
+        <h3><%= weather[0]["location"] %></h3></tr>
+        <table>
+          <% weather[0].each do |key, condition| %>
+            <% unless key == "location" %>
+              <tr><td><%= condition %></td></tr>
+            <% end %>
+          <% end %>
+        </table>
+      </div>
+      <div class="u_input">
+        <form action="/home" method="post">
+          <label for="task_name">New Task:</label>
+          <input type="text" id="task_name" name="task_name">
+
+          <input type="submit">
+        </form>
+      </div>
+
+
+      <div class="d_input">
+        <form action="/home/delete_name" method="post">
+          <label for="delete_name">Delete Task:</label>
+          <input type="text" id="delete_name" name="delete_name">
+
+          <input type="submit">
+        </form>
+      </div>
+      <div class="nav">
+        <ul>
+          <li><a href="https://mail.google.com/mail/u/0/?tab=wm#inbox">Gmail</a></li>
+          <li><a href="http://www.bbc.com/sport/0/football/">BBC</a></li>
+          <li><a href="http://www.reddit.com/">Reddit</a></li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
