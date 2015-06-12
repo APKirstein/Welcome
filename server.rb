@@ -16,6 +16,8 @@ end
 
 get '/home' do
   tasks = db_connection { |conn| conn.exec("SELECT name FROM task") }
+  forecasts = Array.new
+  forecasts = db_connection { |conn| conn.exec("SELECT * FROM forecast") }
   weather = db_connection { |conn| conn.exec("SELECT
     location,
     observation_time,
@@ -29,7 +31,7 @@ get '/home' do
 ") }
   date_function = Date.today
 
-  erb :index, locals: { date: date_function, tasks: tasks, weather: weather }
+  erb :index, locals: { date: date_function, tasks: tasks, weather: weather, forecasts: forecasts }
 end
 
 post '/home' do

@@ -19,12 +19,10 @@ def keys
   "weather" => :weather,
   "temperature_string" => :temp,
   "wind_string" => :string
-  # icon: response["current_observation"]["icon_url"],
-  # forecast: response["current_observation"]["forecast_url"],
 }
 end
 
-def sql
+def sql_weather
   <<-SQL
   INSERT INTO weather_table(
     location,
@@ -37,12 +35,11 @@ def sql
   SQL
 end
 
-def cache_data
+def cache_data_weather
   response = HTTParty.get('http://api.wunderground.com/api/fe47edab0cd8d58c/conditions/q/MA/Boston.json')
-  response_forecast = HTTParty.get('http://api.wunderground.com/api/fe47edab0cd8d58c/forecast/q/MA/Boston.json')
   weather_data = []
   url_info = response["current_observation"]
-  forecast = response_forecast["forecast"]
+
 
   url_info.each do |key, info|
     if key == "display_location"
@@ -56,7 +53,7 @@ end
 
 def import_data
   db_connection do |conn|
-    conn.exec_params(sql, cache_data)
+    conn.exec_params(sql_weather, cache_data_weather)
   end
 end
 
